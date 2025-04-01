@@ -1,14 +1,11 @@
 package com.xiaoxu.shuati.service;
 
-import com.xiaoxu.shuati.model.entity.PostThumb;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiaoxu.shuati.model.entity.PostThumb;
 import com.xiaoxu.shuati.model.entity.User;
 
 /**
  * 帖子点赞服务
- *
-
-
  */
 public interface PostThumbService extends IService<PostThumb> {
 

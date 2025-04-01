@@ -6,15 +6,13 @@ import com.xiaoxu.shuati.model.dto.user.UserQueryRequest;
 import com.xiaoxu.shuati.model.entity.User;
 import com.xiaoxu.shuati.model.vo.LoginUserVO;
 import com.xiaoxu.shuati.model.vo.UserVO;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 用户服务
- *
-
-
  */
 public interface UserService extends IService<User> {
 

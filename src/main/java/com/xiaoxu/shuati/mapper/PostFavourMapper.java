@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 帖子收藏数据库操作
- *
  */
 public interface PostFavourMapper extends BaseMapper<PostFavour> {
 
@@ -24,7 +23,7 @@ public interface PostFavourMapper extends BaseMapper<PostFavour> {
      * @return
      */
     Page<Post> listFavourPostByPage(IPage<Post> page, @Param(Constants.WRAPPER) Wrapper<Post> queryWrapper,
-            long favourUserId);
+                                    long favourUserId);
 
 }
 

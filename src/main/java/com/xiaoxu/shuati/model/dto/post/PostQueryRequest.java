@@ -1,16 +1,14 @@
 package com.xiaoxu.shuati.model.dto.post;
 
 import com.xiaoxu.shuati.common.PageRequest;
-import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * 查询请求
- *
-
-
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

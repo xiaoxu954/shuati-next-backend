@@ -2,15 +2,13 @@ package com.xiaoxu.shuati.model.dto.postfavour;
 
 import com.xiaoxu.shuati.common.PageRequest;
 import com.xiaoxu.shuati.model.dto.post.PostQueryRequest;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * 帖子收藏查询请求
- *
-
-
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

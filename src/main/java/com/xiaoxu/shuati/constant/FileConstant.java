@@ -2,9 +2,6 @@ package com.xiaoxu.shuati.constant;
 
 /**
  * 文件常量
- *
-
-
  */
 public interface FileConstant {
 

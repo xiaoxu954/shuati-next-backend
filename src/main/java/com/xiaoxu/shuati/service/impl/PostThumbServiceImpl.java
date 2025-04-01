@@ -10,16 +10,14 @@ import com.xiaoxu.shuati.model.entity.PostThumb;
 import com.xiaoxu.shuati.model.entity.User;
 import com.xiaoxu.shuati.service.PostService;
 import com.xiaoxu.shuati.service.PostThumbService;
-import javax.annotation.Resource;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * 帖子点赞服务实现
- *
-
-
  */
 @Service
 public class PostThumbServiceImpl extends ServiceImpl<PostThumbMapper, PostThumb>

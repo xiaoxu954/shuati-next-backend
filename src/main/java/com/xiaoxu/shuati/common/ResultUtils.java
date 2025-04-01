@@ -2,9 +2,6 @@ package com.xiaoxu.shuati.common;
 
 /**
  * 返回工具类
- *
-
-
  */
 public class ResultUtils {
 

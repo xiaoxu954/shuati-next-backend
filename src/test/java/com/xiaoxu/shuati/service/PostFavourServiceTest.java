@@ -4,17 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiaoxu.shuati.model.entity.Post;
 import com.xiaoxu.shuati.model.entity.User;
-import javax.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
+
 /**
  * 帖子收藏服务测试
- *
-
-
  */
 @SpringBootTest
 class PostFavourServiceTest {
