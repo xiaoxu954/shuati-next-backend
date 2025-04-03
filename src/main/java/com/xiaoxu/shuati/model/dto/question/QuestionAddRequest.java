@@ -1,4 +1,4 @@
-package com.xiaoxu.shuati.model.dto.questionBank;
+package com.xiaoxu.shuati.model.dto.question;
 
 import lombok.Data;
 
@@ -6,12 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 创建题库请求
- *
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
+ * 创建题目请求
  */
 @Data
-public class QuestionBankAddRequest implements Serializable {
+public class QuestionAddRequest implements Serializable {
 
     /**
      * 标题
@@ -26,8 +24,12 @@ public class QuestionBankAddRequest implements Serializable {
     /**
      * 标签列表
      */
-    private List
-            <String> tags;
+    private List<String> tags;
+
+    /**
+     * 推荐答案
+     */
+    private String answer;
 
     private static final long serialVersionUID = 1L;
 }

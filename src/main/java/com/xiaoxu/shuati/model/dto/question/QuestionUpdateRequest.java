@@ -1,4 +1,4 @@
-package com.xiaoxu.shuati.model.dto.userComment;
+package com.xiaoxu.shuati.model.dto.question;
 
 import lombok.Data;
 
@@ -6,12 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 编辑用户评论请求
- *
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
+ * 更新题目请求
  */
 @Data
-public class UserCommentEditRequest implements Serializable {
+public class QuestionUpdateRequest implements Serializable {
 
     /**
      * id
@@ -32,6 +30,11 @@ public class UserCommentEditRequest implements Serializable {
      * 标签列表
      */
     private List<String> tags;
+
+    /**
+     * 推荐答案
+     */
+    private String answer;
 
     private static final long serialVersionUID = 1L;
 }

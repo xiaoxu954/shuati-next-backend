@@ -1,20 +1,18 @@
-package com.xiaoxu.shuati.model.dto.userComment;
+package com.xiaoxu.shuati.model.dto.questionbank;
+
 
 import com.xiaoxu.shuati.common.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
- * 查询用户评论请求
- *
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
+ * 查询题库请求
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserCommentQueryRequest extends PageRequest implements Serializable {
+public class QuestionBankQueryRequest extends PageRequest implements Serializable {
 
     /**
      * id
@@ -37,19 +35,24 @@ public class UserCommentQueryRequest extends PageRequest implements Serializable
     private String title;
 
     /**
-     * 内容
+     * 描述
      */
-    private String content;
+    private String description;
 
     /**
-     * 标签列表
+     * 图片
      */
-    private List<String> tags;
+    private String picture;
 
     /**
      * 创建用户 id
      */
     private Long userId;
+
+    /**
+     * 是否要关联查询题目列表
+     */
+    private boolean needQueryQuestionList;
 
     private static final long serialVersionUID = 1L;
 }

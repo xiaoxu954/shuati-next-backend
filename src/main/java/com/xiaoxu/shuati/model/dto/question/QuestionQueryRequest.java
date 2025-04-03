@@ -1,4 +1,5 @@
-package com.xiaoxu.shuati.model.dto.questionBank;
+package com.xiaoxu.shuati.model.dto.question;
+
 
 import com.xiaoxu.shuati.common.PageRequest;
 import lombok.Data;
@@ -8,13 +9,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 查询题库请求
- *
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
+ * 查询题目请求
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class QuestionBankQueryRequest extends PageRequest implements Serializable {
+public class QuestionQueryRequest extends PageRequest implements Serializable {
 
     /**
      * id
@@ -44,8 +43,17 @@ public class QuestionBankQueryRequest extends PageRequest implements Serializabl
     /**
      * 标签列表
      */
-    private List
-            <String> tags;
+    private List<String> tags;
+
+    /**
+     * 推荐答案
+     */
+    private String answer;
+
+    /**
+     * 题库 id
+     */
+    private Long questionBankId;
 
     /**
      * 创建用户 id

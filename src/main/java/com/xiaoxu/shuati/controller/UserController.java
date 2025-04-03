@@ -15,6 +15,7 @@ import com.xiaoxu.shuati.model.entity.User;
 import com.xiaoxu.shuati.model.vo.LoginUserVO;
 import com.xiaoxu.shuati.model.vo.UserVO;
 import com.xiaoxu.shuati.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
@@ -53,6 +54,7 @@ public class UserController {
      * @param userRegisterRequest
      * @return
      */
+    @ApiOperation(value = "用户注册", notes = "根据用户信息注册")
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         if (userRegisterRequest == null) {
@@ -75,6 +77,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "用户登录", notes = "根据用户信息登录")
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
@@ -92,6 +95,7 @@ public class UserController {
     /**
      * 用户登录（微信开放平台）
      */
+    @ApiOperation(value = "用户登录（微信开放平台）", notes = "根据微信开放平台返回的code获取用户信息")
     @GetMapping("/login/wx_open")
     public BaseResponse<LoginUserVO> userLoginByWxOpen(HttpServletRequest request, HttpServletResponse response,
                                                        @RequestParam("code") String code) {
@@ -118,6 +122,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "用户注销", notes = "根据请求注销用户")
     @PostMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
         if (request == null) {
@@ -133,6 +138,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "获取当前登录用户", notes = "根据请求获取当前登录用户的信息")
     @GetMapping("/get/login")
     public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
@@ -150,6 +156,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "创建用户", notes = "根据用户信息创建用户")
     @PostMapping("/add")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Long> addUser(@RequestBody UserAddRequest userAddRequest, HttpServletRequest request) {
@@ -174,6 +181,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "删除用户", notes = "根据ID删除用户")
     @PostMapping("/delete")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> deleteUser(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
@@ -191,6 +199,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "更新用户", notes = "根据用户信息更新用户")
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest,
@@ -212,6 +221,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "根据 id 获取用户", notes = "根据 id 获取用户（仅管理员）")
     @GetMapping("/get")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<User> getUserById(long id, HttpServletRequest request) {
@@ -230,6 +240,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "根据 id 获取用户", notes = "根据 id 获取用户（仅管理员）")
     @GetMapping("/get/vo")
     public BaseResponse<UserVO> getUserVOById(long id, HttpServletRequest request) {
         BaseResponse<User> response = getUserById(id, request);
@@ -244,6 +255,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "分页获取用户列表", notes = "根据用户查询条件获取分页的用户列表")
     @PostMapping("/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Page<User>> listUserByPage(@RequestBody UserQueryRequest userQueryRequest,
@@ -262,6 +274,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "分页获取用户封装列表", notes = "根据用户查询条件获取分页的用户封装列表")
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<UserVO>> listUserVOByPage(@RequestBody UserQueryRequest userQueryRequest,
                                                        HttpServletRequest request) {
@@ -289,6 +302,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "更新用户", notes = "根据用户信息更新用户")
     @PostMapping("/update/my")
     public BaseResponse<Boolean> updateMyUser(@RequestBody UserUpdateMyRequest userUpdateMyRequest,
                                               HttpServletRequest request) {
