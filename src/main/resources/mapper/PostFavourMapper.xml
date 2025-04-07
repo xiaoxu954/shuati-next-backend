@@ -6,7 +6,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoxu.shuati.mapper.PostFavourMapper">
 
-    <resultMap id="BaseResultMap" type="com.xiaoxu.shuati.model.entity.PostFavour">
+    <resultMap id="BaseResultMap" type="com.xiaoxu.shuatinextbackend.model.entity.PostFavour">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="postId" column="postId" jdbcType="BIGINT"/>
         <result property="userId" column="userId" jdbcType="BIGINT"/>
@@ -21,7 +21,7 @@
     </sql>
 
     <select id="listFavourPostByPage"
-            resultType="com.xiaoxu.shuati.model.entity.Post">
+            resultType="com.xiaoxu.shuatinextbackend.model.entity.Post">
         select p.*
         from post p
                  join (select postId from post_favour where userId = #{favourUserId}) pf
