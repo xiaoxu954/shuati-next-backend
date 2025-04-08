@@ -11,6 +11,8 @@ import com.xiaoxu.shuatinextbackend.model.dto.file.UploadFileRequest;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.model.enums.FileUploadBizEnum;
 import com.xiaoxu.shuatinextbackend.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,7 @@ import java.util.Arrays;
 /**
  * 文件接口
  */
+@Api(tags = "文件接口")
 @RestController
 @RequestMapping("/file")
 @Slf4j
@@ -46,6 +49,7 @@ public class FileController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "文件上传")
     @PostMapping("/upload")
     public BaseResponse<String> uploadFile(@RequestPart("file") MultipartFile multipartFile,
                                            UploadFileRequest uploadFileRequest, HttpServletRequest request) {
@@ -88,6 +92,7 @@ public class FileController {
      * @param multipartFile
      * @param fileUploadBizEnum 业务类型
      */
+    @ApiOperation(value = "校验文件")
     private void validFile(MultipartFile multipartFile, FileUploadBizEnum fileUploadBizEnum) {
         // 文件大小
         long fileSize = multipartFile.getSize();

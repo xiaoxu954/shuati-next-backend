@@ -15,6 +15,8 @@ import com.xiaoxu.shuatinextbackend.model.vo.PostVO;
 import com.xiaoxu.shuatinextbackend.service.PostFavourService;
 import com.xiaoxu.shuatinextbackend.service.PostService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 帖子收藏接口
  */
+@Api(tags = "帖子收藏接口")
 @RestController
 @RequestMapping("/post_favour")
 @Slf4j
@@ -48,6 +51,7 @@ public class PostFavourController {
      * @param request
      * @return resultNum 收藏变化数
      */
+    @ApiOperation(value = "帖子收藏 / 取消收藏")
     @PostMapping("/")
     public BaseResponse<Integer> doPostFavour(@RequestBody PostFavourAddRequest postFavourAddRequest,
                                               HttpServletRequest request) {

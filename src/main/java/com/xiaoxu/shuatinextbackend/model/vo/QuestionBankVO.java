@@ -1,6 +1,5 @@
 package com.xiaoxu.shuatinextbackend.model.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiaoxu.shuatinextbackend.model.entity.Question;
 import lombok.Data;
@@ -38,6 +37,7 @@ public class QuestionBankVO implements Serializable {
      * 题库里的题目列表（分页）
      */
     Page<Question> questionPage;
+
     /**
      * 创建用户 id
      */

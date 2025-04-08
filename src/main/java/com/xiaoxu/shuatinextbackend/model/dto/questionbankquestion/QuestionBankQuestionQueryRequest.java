@@ -5,14 +5,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 题库题目添加请求
+ * 题库题目查询
  *
  */
 @Data
-public class QuestionBankQuestionAddRequest implements Serializable {
-    /**
-     * id
-     */
+public class QuestionBankQuestionQueryRequest implements Serializable {
+
     private Long id;
 
     /**
@@ -24,6 +22,7 @@ public class QuestionBankQuestionAddRequest implements Serializable {
      * 题目 id
      */
     private Long questionId;
+
 
     private static final long serialVersionUID = 1L;
 }

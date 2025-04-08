@@ -8,6 +8,8 @@ import com.xiaoxu.shuatinextbackend.model.dto.postthumb.PostThumbAddRequest;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.service.PostThumbService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 帖子点赞接口
  */
+@Api(tags = "帖子点赞接口")
 @RestController
 @RequestMapping("/post_thumb")
 @Slf4j
@@ -38,6 +41,7 @@ public class PostThumbController {
      * @param request
      * @return resultNum 本次点赞变化数
      */
+    @ApiOperation(value = "点赞 / 取消点赞")
     @PostMapping("/")
     public BaseResponse<Integer> doThumb(@RequestBody PostThumbAddRequest postThumbAddRequest,
                                          HttpServletRequest request) {

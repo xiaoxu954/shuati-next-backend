@@ -1,14 +1,16 @@
 package com.xiaoxu.shuatinextbackend.model.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import cn.hutool.json.JSONUtil;
+import com.xiaoxu.shuatinextbackend.model.entity.Question;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 题目视图
- *
  */
 @Data
 public class QuestionVO implements Serializable {
@@ -30,7 +32,7 @@ public class QuestionVO implements Serializable {
     /**
      * 标签列表（json 数组）
      */
-    private String tags;
+    private List<String> tags;
 
     /**
      * 推荐答案
@@ -58,4 +60,38 @@ public class QuestionVO implements Serializable {
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;
+
+
+    /**
+     * 包装类转对象
+     *
+     * @param questionVO
+     * @return
+     */
+    public static Question voToObj(QuestionVO questionVO) {
+        if (questionVO == null) {
+            return null;
+        }
+        Question post = new Question();
+        BeanUtils.copyProperties(questionVO, post);
+        List<String> tagList = questionVO.getTags();
+        post.setTags(JSONUtil.toJsonStr(tagList));
+        return post;
+    }
+
+    /**
+     * 对象转包装类
+     *
+     * @param question
+     * @return
+     */
+    public static QuestionVO objToVo(Question question) {
+        if (question == null) {
+            return null;
+        }
+        QuestionVO questionVO = new QuestionVO();
+        BeanUtils.copyProperties(question, questionVO);
+        questionVO.setTags(JSONUtil.toList(question.getTags(), String.class));
+        return questionVO;
+    }
 }

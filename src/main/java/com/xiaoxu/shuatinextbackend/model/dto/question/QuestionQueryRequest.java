@@ -4,6 +4,7 @@ import com.xiaoxu.shuatinextbackend.common.PageRequest;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 题目查询请求
@@ -28,7 +29,7 @@ public class QuestionQueryRequest extends PageRequest implements Serializable {
     /**
      * 标签列表（json 数组）
      */
-    private String tags;
+    private List<String> tags;
 
     /**
      * 推荐答案

@@ -3,6 +3,7 @@ package com.xiaoxu.shuatinextbackend.model.dto.question;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 题目更新请求
@@ -29,7 +30,7 @@ public class QuestionUpdateRequest implements Serializable {
     /**
      * 标签列表（json 数组）
      */
-    private String tags;
+    private List<String> tags;
 
     /**
      * 推荐答案

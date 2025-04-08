@@ -19,6 +19,8 @@ import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.model.vo.PostVO;
 import com.xiaoxu.shuatinextbackend.service.PostService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,7 @@ import java.util.List;
 /**
  * 帖子接口
  */
+@Api(tags = "帖子接口")
 @RestController
 @RequestMapping("/post")
 @Slf4j
@@ -50,6 +53,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "创建帖子")
     @PostMapping("/add")
     public BaseResponse<Long> addPost(@RequestBody PostAddRequest postAddRequest, HttpServletRequest request) {
         if (postAddRequest == null) {
@@ -79,6 +83,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "删除帖子")
     @PostMapping("/delete")
     public BaseResponse<Boolean> deletePost(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
@@ -103,6 +108,7 @@ public class PostController {
      * @param postUpdateRequest
      * @return
      */
+    @ApiOperation(value = "更新帖子(仅管理员)")
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updatePost(@RequestBody PostUpdateRequest postUpdateRequest) {
@@ -131,6 +137,7 @@ public class PostController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "根据 id 获取帖子")
     @GetMapping("/get/vo")
     public BaseResponse<PostVO> getPostVOById(long id, HttpServletRequest request) {
         if (id <= 0) {
@@ -149,6 +156,7 @@ public class PostController {
      * @param postQueryRequest
      * @return
      */
+    @ApiOperation(value = "分页获取帖子列表(仅管理员)")
     @PostMapping("/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Page<Post>> listPostByPage(@RequestBody PostQueryRequest postQueryRequest) {
@@ -166,6 +174,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "分页获取帖子列表(封装类)")
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<PostVO>> listPostVOByPage(@RequestBody PostQueryRequest postQueryRequest,
                                                        HttpServletRequest request) {
@@ -185,6 +194,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "分页获取当前用户创建的帖子列表")
     @PostMapping("/my/list/page/vo")
     public BaseResponse<Page<PostVO>> listMyPostVOByPage(@RequestBody PostQueryRequest postQueryRequest,
                                                          HttpServletRequest request) {
@@ -211,6 +221,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "分页搜索（从 ES 查询，封装类）")
     @PostMapping("/search/page/vo")
     public BaseResponse<Page<PostVO>> searchPostVOByPage(@RequestBody PostQueryRequest postQueryRequest,
                                                          HttpServletRequest request) {
@@ -228,6 +239,7 @@ public class PostController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "编辑帖子（用户）")
     @PostMapping("/edit")
     public BaseResponse<Boolean> editPost(@RequestBody PostEditRequest postEditRequest, HttpServletRequest request) {
         if (postEditRequest == null || postEditRequest.getId() <= 0) {
