@@ -23,11 +23,13 @@ import com.xiaoxu.shuatinextbackend.service.UserService;
 import com.xiaoxu.shuatinextbackend.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -141,14 +143,30 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
             }
         }
         // 查询数据库
-        Page<Question> questionPage = this.page(new Page<>(current, size), queryWrapper);
-        return questionPage;
+        return this.page(new Page<>(current, size), queryWrapper);
     }
 
 
     @Override
     public Page<QuestionVO> getQuestionVOPage(Page<Question> questionPage, HttpServletRequest request) {
-        return null;
+        List<Question> questionList = questionPage.getRecords();
+        Page<QuestionVO> questionVOPage = new Page<>(questionPage.getCurrent(), questionPage.getSize(), questionPage.getTotal());
+        if (CollUtil.isEmpty(questionList)) {
+            return questionVOPage;
+        }
+        // 实现 Question 到 QuestionVO 的转换逻辑
+        List<QuestionVO> newQuestionVO = questionList.stream()
+                .filter(Objects::nonNull) // 防止空值引发 NPE
+                .map(question -> {
+                    QuestionVO vo = new QuestionVO();
+                    // 假设 QuestionVO 需要从 Question 复制字段
+                    BeanUtils.copyProperties(question, vo);
+                    return vo;
+                })
+                .collect(Collectors.toList());
+        questionVOPage.setRecords(newQuestionVO);
+        return questionVOPage;
+
     }
 }
 

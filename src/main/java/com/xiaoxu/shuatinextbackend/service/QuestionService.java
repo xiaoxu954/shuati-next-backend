@@ -44,10 +44,12 @@ public interface QuestionService extends IService<Question> {
 
     /**
      * 分页获取题目列表
+     *
      * @param questionQueryRequest
      * @return
      */
     Page<Question> listQuestionByPage(QuestionQueryRequest questionQueryRequest);
+
     /**
      * 分页获取题目封装
      *

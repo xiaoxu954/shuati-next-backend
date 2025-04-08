@@ -54,6 +54,7 @@ public class QuestionBankQuestionController {
      * @return
      */
     @ApiOperation(value = "添加题库题目关系")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @PostMapping("/add")
     public BaseResponse<Long> addQuestionBankQuestion(@RequestBody QuestionBankQuestionAddRequest questionBankAddRequest, HttpServletRequest request) {
         if (questionBankAddRequest == null) {
@@ -79,8 +80,8 @@ public class QuestionBankQuestionController {
      */
 
     @ApiOperation(value = "删除题库题目关系")
-    @PostMapping("/remove")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    @PostMapping("/remove")
     public BaseResponse<Boolean> removeQuestionBankQuestion(@RequestBody QuestionBankQuestionRemoveRequest questionBankQuestionRemoveRequest) {
         // 参数校验
         ThrowUtils.throwIf(questionBankQuestionRemoveRequest == null, ErrorCode.PARAMS_ERROR);

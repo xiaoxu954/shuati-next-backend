@@ -135,7 +135,7 @@ public class QuestionController {
      * @return
      */
 
-    @ApiOperation(value = "根据 id 获取")
+    @ApiOperation(value = "根据 id 获取题目")
     @GetMapping("/get/vo")
     public BaseResponse<QuestionVO> getQuestionVOById(long id, HttpServletRequest request) {
         if (id <= 0) {

@@ -66,16 +66,14 @@ public class QuestionBankController {
         if (questionBankAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        QuestionBank question = new QuestionBank();
-        BeanUtils.copyProperties(questionBankAddRequest, question);
-
-
-        questionBankService.validQuestionBank(question, true);
+        QuestionBank questionBank = new QuestionBank();
+        BeanUtils.copyProperties(questionBankAddRequest, questionBank);
+        questionBankService.validQuestionBank(questionBank, true);
         User loginUser = userService.getLoginUser(request);
-        question.setUserId(loginUser.getId());
-        boolean result = questionBankService.save(question);
+        questionBank.setUserId(loginUser.getId());
+        boolean result = questionBankService.save(questionBank);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        long newQuestionBankId = question.getId();
+        long newQuestionBankId = questionBank.getId();
         return ResultUtils.success(newQuestionBankId);
     }
 
