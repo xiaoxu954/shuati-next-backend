@@ -11,25 +11,21 @@ import java.util.List;
 @Data
 public class QuestionAddRequest implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /**
      * 标题
      */
     private String title;
-
     /**
      * 内容
      */
     private String content;
-
     /**
      * 标签列表
      */
     private List<String> tags;
-
     /**
      * 推荐答案
      */
     private String answer;
-
-    private static final long serialVersionUID = 1L;
 }

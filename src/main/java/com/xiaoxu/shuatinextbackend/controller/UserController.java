@@ -15,7 +15,6 @@ import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.model.vo.LoginUserVO;
 import com.xiaoxu.shuatinextbackend.model.vo.UserVO;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
@@ -36,7 +35,6 @@ import static com.xiaoxu.shuatinextbackend.service.impl.UserServiceImpl.SALT;
 /**
  * 用户接口
  */
-@Api(tags = "用户接口")
 @RestController
 @RequestMapping("/user")
 @Slf4j

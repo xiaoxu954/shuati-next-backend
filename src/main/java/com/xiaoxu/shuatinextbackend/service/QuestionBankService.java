@@ -43,10 +43,12 @@ public interface QuestionBankService extends IService<QuestionBank> {
 
     /**
      * 分页获取题库列表
+     *
      * @param questionBankQueryRequest
      * @return
      */
     Page<QuestionBank> listQuestionBankByPage(QuestionBankQueryRequest questionBankQueryRequest);
+
     /**
      * 分页获取题库封装
      *

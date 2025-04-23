@@ -1,8 +1,6 @@
 package com.xiaoxu.shuatinextbackend.controller;
 
 import com.xiaoxu.shuatinextbackend.wxmp.WxMpConstant;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
@@ -28,7 +26,6 @@ import java.util.Collections;
 /**
  * 微信公众号相关接口
  **/
-@Api(tags = "公众号接口")
 @RestController
 @RequestMapping("/")
 @Slf4j

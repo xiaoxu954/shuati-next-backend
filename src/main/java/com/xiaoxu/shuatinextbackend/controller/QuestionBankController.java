@@ -21,7 +21,6 @@ import com.xiaoxu.shuatinextbackend.model.vo.QuestionBankVO;
 import com.xiaoxu.shuatinextbackend.service.QuestionBankService;
 import com.xiaoxu.shuatinextbackend.service.QuestionService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -33,7 +32,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 题库接口
  */
-@Api(tags = "题库接口")
 @RestController
 @RequestMapping("/questionBank")
 @Slf4j
@@ -48,7 +46,6 @@ public class QuestionBankController {
 
     @Resource
     private QuestionBankService questionBankService;
-    
 
 
     // region 增删改查
@@ -186,7 +183,7 @@ public class QuestionBankController {
         long current = questionBankQueryRequest.getCurrent();
         long size = questionBankQueryRequest.getPageSize();
         // 限制爬虫
-        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
+        ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
         Page<QuestionBank> questionPage = questionBankService.page(new Page<>(current, size),
                 questionBankService.getQueryWrapper(questionBankQueryRequest));
         return ResultUtils.success(questionBankService.getQuestionBankVOPage(questionPage, request));

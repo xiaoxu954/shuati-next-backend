@@ -10,30 +10,25 @@ import java.io.Serializable;
  */
 @Data
 public class QuestionBankQueryRequest extends PageRequest implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * id
      */
     private Long id;
-
     /**
      * 标题
      */
     private String title;
-
     /**
      * 描述
      */
     private String description;
-
     /**
      * 图片
      */
     private String picture;
-
     /**
      * 是否要关联查询题目列表
      */
     private boolean needQueryQuestionList;
-
-    private static final long serialVersionUID = 1L;
 }

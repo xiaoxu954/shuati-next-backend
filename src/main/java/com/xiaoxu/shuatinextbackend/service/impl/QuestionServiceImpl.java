@@ -168,6 +168,14 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         return questionVOPage;
 
     }
+
+    @Override
+    public Page<QuestionVO> searchQuestionVO(QuestionQueryRequest questionQueryRequest, HttpServletRequest request) {
+
+        Page<Question> questionPage = this.listQuestionByPage(questionQueryRequest);
+        return this.getQuestionVOPage(questionPage, request);
+
+    }
 }
 
 

@@ -15,7 +15,6 @@ import com.xiaoxu.shuatinextbackend.model.vo.PostVO;
 import com.xiaoxu.shuatinextbackend.service.PostFavourService;
 import com.xiaoxu.shuatinextbackend.service.PostService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 帖子收藏接口
  */
-@Api(tags = "帖子收藏接口")
 @RestController
 @RequestMapping("/post_favour")
 @Slf4j

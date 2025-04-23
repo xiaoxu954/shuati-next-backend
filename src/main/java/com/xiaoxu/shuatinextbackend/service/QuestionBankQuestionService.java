@@ -11,10 +11,11 @@ import com.xiaoxu.shuatinextbackend.model.entity.QuestionBankQuestion;
 public interface QuestionBankQuestionService extends IService<QuestionBankQuestion> {
     /**
      * 校验
+     *
      * @param questionBankQuestion
      * @param add
      */
-     void validQuestionBankQuestion(QuestionBankQuestion questionBankQuestion, boolean add) ;
+    void validQuestionBankQuestion(QuestionBankQuestion questionBankQuestion, boolean add);
 
 
 }

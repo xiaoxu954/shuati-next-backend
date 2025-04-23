@@ -17,10 +17,9 @@ import javax.annotation.Resource;
 @SpringBootTest
 class PostFavourServiceTest {
 
+    private static final User loginUser = new User();
     @Resource
     private PostFavourService postFavourService;
-
-    private static final User loginUser = new User();
 
     @BeforeAll
     static void setUp() {

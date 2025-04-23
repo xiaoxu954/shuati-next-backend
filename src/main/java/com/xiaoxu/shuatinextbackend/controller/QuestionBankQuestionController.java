@@ -16,7 +16,6 @@ import com.xiaoxu.shuatinextbackend.model.entity.QuestionBankQuestion;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.service.QuestionBankQuestionService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -31,7 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 题库题目关系接口
  */
-@Api(tags = "题库题目关系接口")
 @RestController
 @RequestMapping("/questionBankQuestion")
 @Slf4j

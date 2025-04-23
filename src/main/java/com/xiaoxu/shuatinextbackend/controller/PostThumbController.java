@@ -8,7 +8,6 @@ import com.xiaoxu.shuatinextbackend.model.dto.postthumb.PostThumbAddRequest;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.service.PostThumbService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 帖子点赞接口
  */
-@Api(tags = "帖子点赞接口")
 @RestController
 @RequestMapping("/post_thumb")
 @Slf4j

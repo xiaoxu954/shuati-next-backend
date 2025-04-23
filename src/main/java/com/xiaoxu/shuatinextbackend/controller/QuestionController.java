@@ -18,7 +18,6 @@ import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.model.vo.QuestionVO;
 import com.xiaoxu.shuatinextbackend.service.QuestionService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -31,7 +30,6 @@ import java.util.List;
 /**
  * 题目接口
  */
-@Api(tags = "题目接口")
 @RestController
 @RequestMapping("/question")
 @Slf4j
@@ -118,6 +116,7 @@ public class QuestionController {
         if (tags != null) {
             question.setTags(JSONUtil.toJsonStr(tags));
         }
+
         // 参数校验
         questionService.validQuestion(question, false);
         long id = questionUpdateRequest.getId();
@@ -183,5 +182,17 @@ public class QuestionController {
     }
 
     // endregion
+
+//@ApiOperation(value = "搜索题目（封装类）")
+//    @PostMapping("/search/page/vo")
+//    public BaseResponse<Page<QuestionVO>> searchQuestionVOByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
+//                                                                 HttpServletRequest request) {
+//        long size = questionQueryRequest.getPageSize();
+//        // 限制爬虫
+//        ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
+////        Page<Question> questionPage = questionService.searchFromEs(questionQueryRequest);
+//        return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
+//    }
+//
 
 }

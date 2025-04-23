@@ -14,10 +14,9 @@ import javax.annotation.Resource;
 @SpringBootTest
 class PostThumbServiceTest {
 
+    private static final User loginUser = new User();
     @Resource
     private PostThumbService postThumbService;
-
-    private static final User loginUser = new User();
 
     @BeforeAll
     static void setUp() {
