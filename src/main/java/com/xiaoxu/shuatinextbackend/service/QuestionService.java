@@ -8,6 +8,7 @@ import com.xiaoxu.shuatinextbackend.model.entity.Question;
 import com.xiaoxu.shuatinextbackend.model.vo.QuestionVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author 16658
@@ -59,16 +60,20 @@ public interface QuestionService extends IService<Question> {
      */
     Page<QuestionVO> getQuestionVOPage(Page<Question> questionPage, HttpServletRequest request);
 
-
     /**
-     * 根据题目搜索
+     * 批量删除题目
      *
+     * @param questionIdList
+     */
+    void batchDeleteQuestions(List<Long> questionIdList);
+
+    //todo
+    /**
+     * 从ES中搜索题目
      * @param questionQueryRequest
-     * @param request
      * @return
      */
-    Page<QuestionVO> searchQuestionVO(QuestionQueryRequest questionQueryRequest,
-                                      HttpServletRequest request);
+//   Page<Question> searchFromEs(QuestionQueryRequest questionQueryRequest) ;
 
 }
 

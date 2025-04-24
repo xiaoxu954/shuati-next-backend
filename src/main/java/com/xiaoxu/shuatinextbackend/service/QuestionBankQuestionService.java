@@ -2,6 +2,9 @@ package com.xiaoxu.shuatinextbackend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoxu.shuatinextbackend.model.entity.QuestionBankQuestion;
+import com.xiaoxu.shuatinextbackend.model.entity.User;
+
+import java.util.List;
 
 /**
  * @author 16658
@@ -17,5 +20,21 @@ public interface QuestionBankQuestionService extends IService<QuestionBankQuesti
      */
     void validQuestionBankQuestion(QuestionBankQuestion questionBankQuestion, boolean add);
 
+    /**
+     * 批量添加题目到题库
+     *
+     * @param questionIdList
+     * @param questionBankId
+     * @param loginUser
+     */
+    void batchAddQuestionsToBank(List<Long> questionIdList, Long questionBankId, User loginUser);
+
+    /**
+     * 批量从题库移除题目
+     *
+     * @param questionIdList
+     * @param questionBankId
+     */
+    void batchRemoveQuestionsFromBank(List<Long> questionIdList, Long questionBankId);
 
 }

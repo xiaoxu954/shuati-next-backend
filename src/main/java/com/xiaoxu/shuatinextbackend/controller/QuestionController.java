@@ -13,9 +13,11 @@ import com.xiaoxu.shuatinextbackend.exception.ThrowUtils;
 import com.xiaoxu.shuatinextbackend.model.dto.question.QuestionAddRequest;
 import com.xiaoxu.shuatinextbackend.model.dto.question.QuestionQueryRequest;
 import com.xiaoxu.shuatinextbackend.model.dto.question.QuestionUpdateRequest;
+import com.xiaoxu.shuatinextbackend.model.dto.questionbankquestion.QuestionBankQuestionBatchAddRequest;
 import com.xiaoxu.shuatinextbackend.model.entity.Question;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.model.vo.QuestionVO;
+import com.xiaoxu.shuatinextbackend.service.QuestionBankQuestionService;
 import com.xiaoxu.shuatinextbackend.service.QuestionService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -41,6 +43,8 @@ public class QuestionController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private QuestionBankQuestionService questionBankQuestionService;
     // region 增删改查
 
     /**
@@ -182,17 +186,31 @@ public class QuestionController {
     }
 
     // endregion
+    @PostMapping("/add/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> batchAddQuestionsToBank(@RequestBody QuestionBankQuestionBatchAddRequest questionBankQuestionBatchAddRequest, HttpServletRequest request) {
+        // 参数校验
+        ThrowUtils.throwIf(questionBankQuestionBatchAddRequest == null, ErrorCode.PARAMS_ERROR);
+        User loginUser = userService.getLoginUser(request);
+        Long questionBankId = questionBankQuestionBatchAddRequest.getQuestionBankId();
+        List<Long> questionIdList = questionBankQuestionBatchAddRequest.getQuestionIdList();
+        questionBankQuestionService.batchAddQuestionsToBank(questionIdList, questionBankId, loginUser);
+        return ResultUtils.success(true);
+    }
 
-//@ApiOperation(value = "搜索题目（封装类）")
-//    @PostMapping("/search/page/vo")
-//    public BaseResponse<Page<QuestionVO>> searchQuestionVOByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
-//                                                                 HttpServletRequest request) {
-//        long size = questionQueryRequest.getPageSize();
-//        // 限制爬虫
-//        ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
-////        Page<Question> questionPage = questionService.searchFromEs(questionQueryRequest);
-//        return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
-//    }
-//
+
+    @ApiOperation(value = "搜索题目（封装类）")
+    @PostMapping("/search/page/vo")
+    public BaseResponse<Page<QuestionVO>> searchQuestionVOByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
+                                                                 HttpServletRequest request) {
+        long size = questionQueryRequest.getPageSize();
+        // 限制爬虫
+        ThrowUtils.throwIf(size > 200, ErrorCode.PARAMS_ERROR);
+        //todo 使用es
+//        Page<Question> questionPage = questionService.searchFromEs(questionQueryRequest);
+        Page<Question> questionPage = questionService.listQuestionByPage(questionQueryRequest);
+        return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
+    }
+
 
 }

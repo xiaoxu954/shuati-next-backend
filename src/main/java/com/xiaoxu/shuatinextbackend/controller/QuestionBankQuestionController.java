@@ -10,11 +10,14 @@ import com.xiaoxu.shuatinextbackend.common.ResultUtils;
 import com.xiaoxu.shuatinextbackend.constant.UserConstant;
 import com.xiaoxu.shuatinextbackend.exception.BusinessException;
 import com.xiaoxu.shuatinextbackend.exception.ThrowUtils;
+import com.xiaoxu.shuatinextbackend.model.dto.question.QuestionBatchDeleteRequest;
 import com.xiaoxu.shuatinextbackend.model.dto.questionbankquestion.QuestionBankQuestionAddRequest;
+import com.xiaoxu.shuatinextbackend.model.dto.questionbankquestion.QuestionBankQuestionBatchRemoveRequest;
 import com.xiaoxu.shuatinextbackend.model.dto.questionbankquestion.QuestionBankQuestionRemoveRequest;
 import com.xiaoxu.shuatinextbackend.model.entity.QuestionBankQuestion;
 import com.xiaoxu.shuatinextbackend.model.entity.User;
 import com.xiaoxu.shuatinextbackend.service.QuestionBankQuestionService;
+import com.xiaoxu.shuatinextbackend.service.QuestionService;
 import com.xiaoxu.shuatinextbackend.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 题库题目关系接口
@@ -37,6 +41,9 @@ public class QuestionBankQuestionController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private QuestionService questionService;
 
     @Resource
     private QuestionBankQuestionService questionBankQuestionService;
@@ -95,5 +102,25 @@ public class QuestionBankQuestionController {
     }
 
     // endregion
+
+    @PostMapping("/remove/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> batchRemoveQuestionsFromBank(@RequestBody QuestionBankQuestionBatchRemoveRequest questionBankQuestionBatchRemoveRequest, HttpServletRequest request) {
+        // 参数校验
+        ThrowUtils.throwIf(questionBankQuestionBatchRemoveRequest == null, ErrorCode.PARAMS_ERROR);
+        Long questionBankId = questionBankQuestionBatchRemoveRequest.getQuestionBankId();
+        List<Long> questionIdList = questionBankQuestionBatchRemoveRequest.getQuestionIdList();
+        questionBankQuestionService.batchRemoveQuestionsFromBank(questionIdList, questionBankId);
+        return ResultUtils.success(true);
+    }
+
+    @PostMapping("/delete/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> batchDeleteQuestions(@RequestBody QuestionBatchDeleteRequest questionBatchDeleteRequest, HttpServletRequest request) {
+        ThrowUtils.throwIf(questionBatchDeleteRequest == null, ErrorCode.PARAMS_ERROR);
+        questionService.batchDeleteQuestions(questionBatchDeleteRequest.getQuestionIdList());
+        return ResultUtils.success(true);
+    }
+
 
 }
